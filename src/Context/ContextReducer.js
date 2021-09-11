@@ -1,6 +1,7 @@
 
 const contextReducer =(state,actions)=>{
     let transaction;
+
     switch (actions.type) {
         case "DELETE_TRANSACTION":
             transaction = state.filter(t=>t.type !== actions.payload)
@@ -8,7 +9,7 @@ const contextReducer =(state,actions)=>{
             return transaction
             
         case "ADD_TRANSACTION":
-            transaction = [actions.transaction, ...state]
+            transaction = [actions.payload, ...state]
 
             return transaction
     
