@@ -4,7 +4,7 @@ const contextReducer =(state,actions)=>{
 
     switch (actions.type) {
         case "DELETE_TRANSACTION":
-            transaction = state.filter(t=>t.type !== actions.payload)
+            transaction = state.filter(t=>t.id !== actions.payload)
 
             return transaction
             

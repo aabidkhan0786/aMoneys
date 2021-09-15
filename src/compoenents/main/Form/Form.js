@@ -4,12 +4,14 @@ import {Grid, Typography, FormControl, InputLabel, Select, MenuItem, TextField, 
 import { ExpenseTrackerContext } from '../../../Context/Context'
 import useStyles from './styles'
 import {v4 as uuidv4} from 'uuid'
+import formatDate from '../../../utilities/formatDate'
+import { expenseCategories, incomeCategories } from '../../../Files/Categories'
 
 
 const initState={
     amount:'',
     category:'',
-    type:"income",
+    type:"Income",
     date: formatDate(new Date())
 }
 
@@ -29,6 +31,8 @@ const Form = () => {
 
 // console.log(formData);
 
+const selectedCategories = formData.type === "Income" ? incomeCategories : expenseCategories
+
     return (
         <>
             <Grid spacing={2} container>
@@ -43,16 +47,22 @@ const Form = () => {
                         <Select value={formData.type} onChange={e=>setFormData({...formData,type:e.target.value})}>
                             <MenuItem value='Income'>Income</MenuItem>
                             <MenuItem value='Expense'>Expense</MenuItem>
-                        </Select>
-                        
+                        </Select>                      
                     </FormControl>
                 </Grid>
                 <Grid item xs={6}>
                     <FormControl fullWidth>
                         <InputLabel>Category:</InputLabel>
                         <Select value={formData.category} onChange={e=>setFormData({...formData,category:e.target.value})}>
-                            <MenuItem value='Business'>Business</MenuItem>
-                            <MenuItem value='Rent'>Rent</MenuItem>
+                            {/* <MenuItem value='Business'>Business</MenuItem>
+                            <MenuItem value='Rent'>Rent</MenuItem> */}
+                            {
+                                selectedCategories.map(cate =>(
+                                    <MenuItem key={cate.type} value={cate.type}>
+                                        {cate.type}
+                                        </MenuItem>
+                                ))
+                            }
                         </Select>
                         
                     </FormControl>
@@ -61,7 +71,7 @@ const Form = () => {
                     <TextField type="number" label="Amount" fullWidth value={formData.amount} onChange={e=>setFormData({...formData,amount:e.target.value})}/>
                 </Grid>
                 <Grid item xs={6}>
-                    <TextField type="date" className={classes.form_padd}  fullWidth value={formData.type} onChange={e=>setFormData({...formData,type:e.target.value})}/>
+                    <TextField type="date" className={classes.form_padd}  fullWidth value={formData.date} onChange={e=>setFormData({...formData,date:e.target.value})}/>
                 </Grid>
                 <Button className={classes.buttons} variant="outlined" color="secondary" fullWidth onClick={createTransaction} >Create</Button>
             </Grid>
