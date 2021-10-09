@@ -1,28 +1,19 @@
 import React from 'react'
-import Details from './compoenents/details/Details'
-import {Grid} from '@material-ui/core'
-
-import useStyles from './styles'
-import Main from './compoenents/main/Main'
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
+// import Login from './compoenents/Auth/Login'
+import Layout from './Layout';
 
 const App = () => {
-    const classes = useStyles();
-    return (
-        <>
-                <Grid className={classes.grid} container  spacing={0} alignItems="center" justify="center" style={{"height":"100vh"}}>
-                    <Grid item xs={12} sm={4} >
-                        <Details title="Income"/>
-                    </Grid>
-                    <Grid item xs={12} sm={3} >
-                        <Main/>
-                    </Grid>
-                    <Grid item xs={12} sm={4} >
-                        <Details title="Expense"/>
-                    </Grid>
+  // const [user, setUser] = useState(null);
 
-                </Grid>
-        </>
-    )
+  return (
+    <>
+      {/* {
+                user ? <Layout/>: <Login/> 
+            }               */}
+      <Layout />
+    </>
+  )
 }
 
 export default App

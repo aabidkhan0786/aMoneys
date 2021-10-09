@@ -6,8 +6,8 @@ export default makeStyles(() => ({
     justifyContent: 'center',
     marginBottom: '-10px',
   },
-  button: {
-    marginTop: '20px',
+  buttons: {
+    marginTop: '40px',
   },
   form_padd:{
     paddingTop:"16px"
